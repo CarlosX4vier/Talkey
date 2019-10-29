@@ -1,6 +1,25 @@
-var http = require('http');
+var express = require('express');
+var app = express();
+var mysql = require('mysql')
 
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end('Hello World!');
-}).listen(8080);
+
+var router = require('./router')
+var credentials = require('./credentials.json')
+
+//Criação de rotas
+app.use('/', router)
+
+app.listen(80, function() {
+    var con = mysql.createConnection({
+        host: credentials.mysql.host,
+        user: credentials.mysql.user,
+        password: credentials.mysql.password
+    });
+
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
+    });
+
+    console.log('Servidor online!');
+});

@@ -33,10 +33,10 @@
 
                     <div class="col-4">
                         <div class="list-group" id="list-tab" role="tablist">
-                            <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Nova mensagem</a>
-                            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Recebidos</a>
-                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Enviados</a>
-                            <a class="list-group-item list-group-item-action disabled" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Lixeira</a>
+                            <a class="list-group-item list-group-item-action btn-dark" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Nova mensagem</a>
+                            <a class="list-group-item list-group-item-action btn-dark active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Recebidos</a>
+                            <a class="list-group-item list-group-item-action btn-dark" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Enviados</a>
+                            <a class="list-group-item list-group-item-action btn-dark disabled" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Lixeira</a>
                         </div>
                     </div>
                     <div class="col-8">
@@ -48,20 +48,20 @@
                                     <div class="form-row align-items-center">
 
                                         <div class="form-group col-12">
-                                            <label class="sr-only" for="inlineFormInputName">Assunto</label>
-                                            <input type="text" class="form-control" id="inlineFormInputName" placeholder="Fulano" required>
+                                            <label class="sr-only" for="inputSubject">Assunto</label>
+                                            <input type="text" class="form-control" id="inputSubject" placeholder="Assunto" required>
                                             <div class="invalid-feedback">
                                                 Digite o assunto.
                                             </div>
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <label class="sr-only" for="inlineFormInputGroupUsername">Destinatário</label>
+                                            <label class="sr-only" for="inputReceiver">Destinatário</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">@</div>
                                                 </div>
-                                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Usuário" required>
+                                                <input type="text" class="form-control" id="inputReceiver" placeholder="destinatário@abc.xyz" required>
                                                 <div class="invalid-feedback">
                                                     Escolha um destinatário.
                                                 </div>
@@ -70,7 +70,7 @@
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Mensagem" required></textarea>
                                             <div class="invalid-feedback">
                                                 Digite ao menos uma mensagem.
                                             </div>
@@ -107,7 +107,7 @@
 
                 <div class="text-center p-t-136">
                     <a class="txt2" href="../index.html">
-                        <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i> Sair
+                        <i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i> Sair
                     </a>
                 </div>
 

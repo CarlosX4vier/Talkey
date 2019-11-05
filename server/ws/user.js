@@ -7,7 +7,8 @@ function cadastro(email, name, lastName, password) {
             host: credentials.mysql.host,
             user: credentials.mysql.user,
             password: credentials.mysql.password,
-            database: "talkey"
+            database: "talkey",
+            port: credentials.mysql.port
         });
 
         return new Promise(function(resolve, reject) {
@@ -15,9 +16,11 @@ function cadastro(email, name, lastName, password) {
             con.connect(function(err) {
                 if (err) throw err;
                 console.log("Connected!");
-                con.query(`INSERT INTO usuarios VALUES ( '${name}', '${lastName}', '${email}', '${password}')`, (error) => error);
+                con.query(`INSERT INTO usuarios VALUES (NULL, '${name}', '${lastName}', '${email}', '${password}')`, function(error){
+                    if (error) throw err;
+                    resolve(JSON.stringify({ result: "success" }))
+                });
 
-                resolve(JSON.stringify({ result: "success" }))
             });
 
         })
@@ -31,7 +34,8 @@ function get(id) {
         host: credentials.mysql.host,
         user: credentials.mysql.user,
         password: credentials.mysql.password,
-        database: "talkey"
+        database: "talkey",
+        port: credentials.mysql.port
     });
 
     return new Promise(function(resolve, reject) {

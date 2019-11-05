@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Login V1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="../images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../css/util.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <!--===============================================================================================-->
+</head>
+
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-5">
+
+                <div class="row col-12">
+
+                    <div class="col-4">
+                        <div class="list-group" id="list-tab" role="tablist">
+                            <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Nova mensagem</a>
+                            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Recebidos</a>
+                            <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Enviados</a>
+                            <a class="list-group-item list-group-item-action disabled" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Lixeira</a>
+                        </div>
+                    </div>
+                    <div class="col-8">
+
+                        <div class="tab-content" id="nav-tabContent">
+
+                            <div class="tab-pane fade" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                                <form class="needs-validation" novalidate>
+                                    <div class="form-row align-items-center">
+
+                                        <div class="form-group col-12">
+                                            <label class="sr-only" for="inlineFormInputName">Assunto</label>
+                                            <input type="text" class="form-control" id="inlineFormInputName" placeholder="Fulano" required>
+                                            <div class="invalid-feedback">
+                                                Digite o assunto.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-12">
+                                            <label class="sr-only" for="inlineFormInputGroupUsername">Destinatário</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">@</div>
+                                                </div>
+                                                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Usuário" required>
+                                                <div class="invalid-feedback">
+                                                    Escolha um destinatário.
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group col-12">
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Digite ao menos uma mensagem.
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                                <a href="#" class="list-group-item list-group-item-action">Dois email<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button></a>
+                            </div>
+
+                            <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                                <a href="#" class="list-group-item list-group-item-action">Tres email<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button></a>
+                            </div>
+
+                            <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="text-center p-t-136">
+                    <a class="txt2" href="../index.html">
+                        <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i> Sair
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--===============================================================================================-->
+    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../vendor/bootstrap/js/popper.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="../js/main.js"></script>
+    <script>
+        // Exemplo de JavaScript inicial para desativar envios de formulário, se houver campos inválidos.
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+                var forms = document.getElementsByClassName('needs-validation');
+                // Faz um loop neles e evita o envio
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+</body>
+
+</html>

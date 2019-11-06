@@ -83,7 +83,10 @@ function registerUser() {
 
             if (result.result == 400) {
                 console.log("no if");
+                $.cookie('email', result.data.email_user);
+
                 window.location.href = "email.html";
+
             } else {
                 console.log(result);
                 console.log("no else");
@@ -119,12 +122,14 @@ function validateLogin() {
         url: "/user/",
         data: data,
         datatype: "application/json",
-        contentType: "application/json",
+        // contentType: "application/json",
         success: function(result) {
             result = JSON.parse(result);
 
             if (result.result == 400) {
                 console.log("no if");
+                $.cookie('email', result.data.email_user);
+
                 window.location.href = "pages/email.html";
             } else {
                 console.log(result);

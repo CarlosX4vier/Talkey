@@ -3,12 +3,8 @@ var router = express.Router();
 var user = require('./ws/user')
 const errors = require('./errors.json')
 
-function error(code) {
-    return { result: code, error: errors[code] }
-}
-
 router.post("/", async function(req, res) {
-    resultado = await user.cadastro(req.query.email, req.query.name, req.query.lastName, req.query.password)
+    resultado = await user.cadastro(req.body.email, req.body.name, req.body.lastName, req.body.password)
     if (resultado.result != 400) {
         res.send(JSON.stringify(error(resultado)))
     } else {

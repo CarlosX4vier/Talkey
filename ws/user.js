@@ -28,7 +28,7 @@ function login(email, password) {
         return new Promise(function(resolve, reject) {
             con.connect(function(error) {
                 con.query(`SELECT * FROM usuarios WHERE email_user = '${email}' AND pass_user = '${password}'`, function(err, result) {
-                    if (result[0] == null) {
+                    if (result == null) {
                         //Erro 402 [Usuario não existente]
                         resolve(402)
                     } else {
@@ -100,24 +100,7 @@ function busca_id_destinatario(email_destinatario) {
     }
 }
 
-function enviar_email(remetente, email_destinatario, assunto, mensagem) {
 
-    if (remetente != null && email_destinatario != null && assunto != null && password != null) {
-        id_destinatario = busca_id_destinatario(email_destinatario);
-
-        return new Promise(function(resolve, reject) {
-            con.connect(function(err) {
-                console.log("Connected!");
-                con.query(`INSERT INTO email(id_remetente, id_destinatario, assunto_email, mensagem) VALUES ('${remetente}', '${id_destinatario}', '${assunto}', '${mensagem}')`, function() {
-                    resolve(400)
-                });
-            });
-        })
-    } else {
-        return 401;
-    }
-
-}
 
 
 module.exports = { cadastro, pegar, pegarEmail, login }

@@ -8,14 +8,21 @@ async function enviar_email(remetente, destinatario, assunto, mensagem) {
 
         id_destinatario = await user.pegarEmail(destinatario);
         id_destinatario = id_destinatario.data.id_user;
-        return new Promise(function(resolve, reject) {
-            con.connect(function(err) {
 
-                con.query(`INSERT INTO email(id_remetente, id_destinatario, assunto_email, mensagem_email) VALUES ('${remetente}', '${id_destinatario}', '${assunto}', '${mensagem}')`, function() {
-                    resolve(400)
+        if (id_destinatario != null) {
+
+            return new Promise(function (resolve, reject) {
+                con.connect(function (err) {
+
+                    con.query(`INSERT INTO email(id_remetente, id_destinatario, assunto_email, message) VALUES ('${id_destinatario}', '${id_destinatario}', '${assunto}', '${mensagem}')`, function () {
+                        resolve(400)
+                    });
                 });
             });
-        })
+
+        } else {
+            return 402;
+        }
     } else {
         return 401;
     }

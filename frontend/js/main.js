@@ -24,8 +24,8 @@ function submitForm(type) {
 };
 
 
-$('.validate-form .input100').each(function() {
-    $(this).focus(function() {
+$('.validate-form .input100').each(function () {
+    $(this).focus(function () {
         hideValidate(this);
     });
 });
@@ -77,7 +77,7 @@ function registerUser() {
         data: data,
         datatype: "application/json",
         // contentType: "application/json",
-        success: function(result) {
+        success: function (result) {
             result = JSON.parse(result);
 
             if (result.result == 400) {
@@ -96,7 +96,7 @@ function registerUser() {
             }
 
         },
-        error: function(result) {
+        error: function (result) {
             $('#formRegister')[0].reset();
             $('#modalError').modal('show');
         },
@@ -122,27 +122,24 @@ function validateLogin() {
         data: data,
         datatype: "application/json",
         // contentType: "application/json",
-        success: function(result) {
+        success: function (result) {
             result = JSON.parse(result);
 
-            console.log(result);
 
             if (result.result == 400) {
-                console.log(result.result);
                 $.cookie('email', result.data.email_user);
                 $.cookie('id', result.data.id_user);
 
                 window.location.href = "pages/email.html";
             } else {
-                console.log(result);
-                console.log("no else");
+
                 $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">ERRO ' + result.result + '</h5>');
                 $(".modal-body").html('<p>' + result.error + '</p>');
                 $('#modalError').modal('show');
             }
 
         },
-        error: function(result) {
+        error: function (result) {
             console.log("no error");
             $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">ERRO DESCONHECIDO</h5>');
             $(".modal-body").html('<p>Se o problema persistir, contate o suporte!</p>');

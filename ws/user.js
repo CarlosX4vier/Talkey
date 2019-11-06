@@ -91,7 +91,7 @@ function busca_id_destinatario(email_destinatario) {
         return new Promise(function(resolve, reject) {
             con.connect(function(err) {
                 console.log("Connected!");
-                con.query(`SELECT id_user FROM usuarios WHERE email_user = ${email_destinatario}')`, function() {
+                con.query(`SELECT id_user FROM usuarios WHERE email_user = '${email_destinatario}')`, function() {
                     resolve(400)
                 });
             });

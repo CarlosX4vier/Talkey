@@ -134,6 +134,7 @@ function validateLogin() {
             if (result.result == 400) {
                 console.log(result.result);
                 $.cookie('email', result.data.email_user);
+                $.cookie('id', result.data.id_user);
 
                 console.log(result.data.email_user);
 

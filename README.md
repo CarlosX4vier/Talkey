@@ -1,3 +1,3 @@
 # talkey
 
-## AGORA é PRA FGUDER
+## Sempre bonito ter isso

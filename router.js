@@ -17,9 +17,7 @@ router.post("/", async function(req, res) {
 });
 
 router.get("/", async function(req, res) {
-    res.header('Access-Control-Allow-Origin', '*');
-
-
+    // res.header('Access-Control-Allow-Origin', '*');
 
     resultado = await user.login(req.query.email, req.query.password);
     if (resultado.result == 400) {
@@ -37,7 +35,7 @@ router.get("/:id", async function(req, res) {
         json = JSON.stringify(resultado);
         res.send(json);
     } else {
-        res.send(JSON.stringify(error(resultadoado)))
+        res.send(JSON.stringify(error(resultado)))
     }
 });
 

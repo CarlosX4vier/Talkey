@@ -121,7 +121,6 @@ function validateLogin() {
         url: "/user/",
         data: data,
         datatype: "application/json",
-        // contentType: "application/json",
         success: function (result) {
             result = JSON.parse(result);
 

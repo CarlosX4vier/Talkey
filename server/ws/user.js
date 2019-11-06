@@ -23,6 +23,26 @@ function cadastro(email, name, lastName, password) {
     }
 }
 
+function login(email, password) {
+    if (email != null) {
+        return new Promise(function(resolve, reject) {
+            con.connect(function(error) {
+                con.query(`SELECT * FROM usuarios WHERE email_user = '${email}' AND pass_user = '${password}'`, function(err, result) {
+                    if (result[0] == null) {
+                        //Erro 402 [Usuario não existente]
+                        resolve(402)
+                    } else {
+                        resolve({ result: 400, data: result[0] })
+                    }
+                })
+            });
+        })
+    } else {
+        //Error 401 [campo vazio]
+        return 401;
+    }
+}
+
 function pegarEmail(email) {
     if (email != null) {
         return new Promise(function(resolve, reject) {
@@ -100,4 +120,4 @@ function enviar_email(remetente, email_destinatario, assunto, mensagem) {
 }
 
 
-module.exports = { cadastro, pegar, pegarEmail }
+module.exports = { cadastro, pegar, pegarEmail, login }

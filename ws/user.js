@@ -101,7 +101,19 @@ function busca_id_destinatario(email_destinatario) {
     }
 }
 
+function trocarPassword(email, newPass) {
+    if (email != null && newPass != null) {
+        return new Promise(function(resolve, reject) {
+            con.connect(function(err) {
+                con.query(`UPDATE usuarios SET pass_user = '${newPass}' WHERE email_user = '${email}' `, function(err) {
+                    resolve(400)
+                })
+            })
+        })
+    } else {
+        return 401;
+    }
+}
 
 
-
-module.exports = { cadastro, pegar, pegarEmail, login }
+module.exports = { cadastro, pegar, pegarEmail, login, trocarPassword }

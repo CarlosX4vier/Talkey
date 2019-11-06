@@ -87,26 +87,7 @@
 
                             <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
 
-                                <a href="#" class="list-group-item list-group-item-action">Dois email
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">Dois email
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">Dois email
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </a>
-                                <a href="#" class="list-group-item list-group-item-action">Dois email
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </a>
+
                             </div>
 
                             <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
@@ -178,9 +159,20 @@
     <script>
         $(document).ready(function() {
             console.log($.cookie('email'))
-                //   $.ajax({
-
-            // })
+            $.ajax({
+                url: "http://localhost:8080/message/" + $.cookie("id"),
+                dataType: 'json',
+                success: function(data) {
+                    data.data.forEach(function(value, index, array) {
+                        $("#list-profile").append(`
+                            <a href="#" class="list-group-item list-group-item-action">${value.assunto_email}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </a>`);
+                    })
+                }
+            })
         })
 
         $('form').on('submit', function() {

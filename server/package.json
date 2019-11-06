@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "name": "talkey-server",
     "version": "1.0.0",
     "description": "Talkey Server",
@@ -11,37 +10,20 @@
     "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
+        "start": "npm install && node server.js"
     },
     "author": "Carlos Xavier",
-    "license": "ISC"
-=======
-  "name": "talkey-server",
-  "version": "1.0.0",
-  "description": "Talkey Server",
-  "main": "server.js",
-  "dependencies": {
-    "express": "^4.17.1",
-    "mysql": "^2.17.1"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "Carlos Xavier",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CarlosX4vier/talkey.git"
-  },
-  "keywords": [
-    "message",
-    "talk"
-  ],
-  "bugs": {
-    "url": "https://github.com/CarlosX4vier/talkey/issues"
-  },
-  "homepage": "https://github.com/CarlosX4vier/talkey#readme"
->>>>>>> 7805dd6f1744fef944affa5173ec39abcac704d0
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CarlosX4vier/talkey.git"
+    },
+    "keywords": [
+        "message",
+        "talk"
+    ],
+    "bugs": {
+        "url": "https://github.com/CarlosX4vier/talkey/issues"
+    },
+    "homepage": "https://github.com/CarlosX4vier/talkey#readme"
 }

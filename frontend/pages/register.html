@@ -32,7 +32,7 @@
                     <img src="../images/img-01.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form" autocomplete="off">
+                <form class="login100-form validate-form" id="formRegister" autocomplete="off">
                     <span class="login100-form-title">
 						Cadastro
 					</span>
@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn">
+                        <button class="login100-form-btn" onclick="submitForm('userRegister')">
 							Cadastrar
 						</button>
                     </div>
@@ -88,10 +88,13 @@
     <div class="modal" tabindex="-1" role="dialog" id="modalError">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ERRO</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                </div>
+                <div class="modal-body">
                     <p>Não foi possivel fazer o cadastro.</p>
                 </div>
             </div>
@@ -118,36 +121,6 @@
     <!--===============================================================================================-->
     <script src="../js/main.js"></script>
     <script>
-        $('.validate-form').on('submit', function(event) {
-            event.preventDefault();
-            let name = $("#name").val();
-            let lastname = $("#lastname").val();
-            let email = $("#email").val();
-            let pass = $("#pass").val();
-
-            let data = {
-                nome_user: name,
-                sobrenome_user: lastname,
-                email_user: email,
-                pass_user: pass
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/user/",
-                data: data,
-                datatype: "application/json",
-                contentType: "application/json",
-                success: function(result) {
-                    window.location.href = "email.html";
-                },
-                error: function(result) {
-                    $('#modalError').modal('show');
-                },
-
-            });
-
-        });
     </script>
 
 </body>

@@ -11,12 +11,12 @@ function cadastro(email, name, lastName, password) {
             con.connect(function(err) {
                 console.log("Connected!");
                 con.query(`INSERT INTO usuarios(nome_user, sobrenome_user, email_user, pass_user) VALUES ('${name}', '${lastName}', '${email}', '${password}')`, function() {
-                    resolve(results[400])
+                    resolve(400)
                 });
             });
         })
     } else {
-        return results[401];
+        return 401;
     }
 }
 
@@ -32,6 +32,40 @@ function pegar(id) {
                         resolve({ result: 400, data: result[0] })
                     }
                 })
+            });
+        })
+    } else {
+        return 401;
+    }
+
+}
+
+function busca_id_destinatario(email_destinatario) {
+    if (email_destinatario != null) {
+        return new Promise(function(resolve, reject) {
+            con.connect(function(err) {
+                console.log("Connected!");
+                con.query(`SELECT id_user FROM usuarios WHERE email_user = ${email_destinatario}')`, function() {
+                    resolve(400)
+                });
+            });
+        })
+    } else {
+        return 401;
+    }
+}
+
+function enviar_email(remetente, email_destinatario, assunto, mensagem) {
+
+    if (remetente != null && email_destinatario != null && assunto != null && password != null) {
+        id_destinatario = busca_id_destinatario(email_destinatario);
+
+        return new Promise(function(resolve, reject) {
+            con.connect(function(err) {
+                console.log("Connected!");
+                con.query(`INSERT INTO email(id_remetente, id_destinatario, assunto_email, mensagem) VALUES ('${remetente}', '${id_destinatario}', '${assunto}', '${mensagem}')`, function() {
+                    resolve(400)
+                });
             });
         })
     } else {

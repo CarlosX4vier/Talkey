@@ -8,6 +8,12 @@ function error(code) {
     return { result: code, error: errors[code] }
 }
 
+
+router.put("/", async function(req, res) {
+    resultado = await user.trocarPassword(req.body.email, req.body.newPass);
+    res.send(JSON.stringify(error(resultado)))
+})
+
 router.post("/", async function(req, res) {
     resultado = await user.cadastro(req.body.email, req.body.name, req.body.lastName, req.body.password);
     if (resultado.result != 400) {

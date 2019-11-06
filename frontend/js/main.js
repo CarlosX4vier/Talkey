@@ -70,15 +70,15 @@ function registerUser() {
         email: email,
         password: pass
     }
-    console.log(data);
 
     $.ajax({
         type: "POST",
         url: "/user/",
         data: data,
         datatype: "json",
-        //contentType: "application/json",
+        contentType: "application/json",
         success: function(result) {
+            console.log('AJAX?');
             result = JSON.parse(result);
 
             if (result.result == 400) {

@@ -8,12 +8,8 @@ function cadastro(email, name, lastName, password) {
         return new Promise(function(resolve, reject) {
             con.connect(function(err) {
                 console.log("Connected!");
-<<<<<<< HEAD
                 con.query(`INSERT INTO usuarios(nome_user, sobrenome_user, email_user, pass_user) VALUES ('${name}', '${lastName}', '${email}', '${password}')`, function(error) {
                     if (error) throw err;
-=======
-                con.query(`INSERT INTO usuarios VALUES (NULL, '${name}', '${lastName}', '${email}', '${password}')`, function() {
->>>>>>> 916296d3ee9b4afcb88edf6f56583f5894f9e210
                     resolve(JSON.stringify({ result: "success" }))
                 });
 

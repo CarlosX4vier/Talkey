@@ -85,6 +85,32 @@
         </div>
     </div>
 
+    <div class="modal" tabindex="-1" role="dialog" id="modalSuccess">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                    <p>Cadastrado com sucesso.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modalError">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    <p>Não foi possivel fazer o cadastro.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -105,7 +131,8 @@
     <!--===============================================================================================-->
     <script src="../js/main.js"></script>
     <script>
-        $('.validate-form').on('submit', function() {
+        $('.validate-form').on('submit', function(event) {
+            event.preventDefault();
             let name = $("#name").val();
             let lastname = $("#lastname").val();
             let email = $("#email").val();
@@ -120,10 +147,22 @@
 
             console.log(data);
 
+            $.ajax({
+                type: "POST",
+                url: "/",
+                data: data,
+                datatype: "application/json",
+                contentType: "application/json",
+                success: function(result) {
+                    $('#modalSuccess').modal('show');
+                    window.location.href = "email.html";
+                },
+                error: function(result) {
+                    $('#modalError').modal('show');
+                },
 
-            $.post("/user/", data, function(data) {
-                alert(data);
             });
+
         });
     </script>
 

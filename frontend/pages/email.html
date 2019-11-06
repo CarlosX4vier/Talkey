@@ -91,11 +91,8 @@
                             </div>
 
                             <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
-                                <a href="#" class="list-group-item list-group-item-action">Tres email
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </a>
+
+
                             </div>
 
                             <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
@@ -197,23 +194,52 @@
 
             $.ajax({
                 type: "GET",
-                url: "/message/" + $.cookie("id"),
+                url: "/message/" + $.cookie("id") + "/enviados",
                 dataType: 'json',
                 success: function(data) {
-
-                    console.log(data.result);
-
                     if (data.result == 400 && data.data != null) {
-                        data.data.forEach(function(value, index, array) {
-                            $("#list-profile").append(`
-                            <a href="#" class="list-group-item list-group-item-action">${value.assunto_email}
+                        if (data.data.length != 0) {
+
+                            data.data.forEach(function(value, index, array) {
+                                $("#list-messages").append(`
+                            <a href="#" class="list-group-item list-group-item-action">${value.assunto_email} - ${value.mensagem_email}
                                     <button type="button" class="close" data-dismiss="alert" onclick="deletar(${value.id_email})" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </a>`);
-                        });
-                    } else {
-                        $("#list-profile").append(`
+                            });
+                        } else {
+                            $("#list-messages").append(`
+                                <div class="row justify-content-center align-items-center">
+                                    <img src="../images/mailbox.svg" style="height: 100px" alt="IMG">
+                                </div>
+                                <div class="row justify-content-center align-items-center">
+                                    <p>Nenhum email na sua caixa de enviados ;)</p>
+                                </div>
+                    `);
+                        }
+                    }
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/message/" + $.cookie("id"),
+                dataType: 'json',
+                success: function(data) {
+                    if ((data.result == 400 && data.data != null)) {
+                        console.log(data.result.length);
+                        if (data.data.length != 0) {
+                            data.data.forEach(function(value, index, array) {
+                                $("#list-profile").append(`
+                            <a href="#" class="list-group-item list-group-item-action">${value.assunto_email} - ${value.mensagem_email}
+                                    <button type="button" class="close" data-dismiss="alert" onclick="deletar(${value.id_email})" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </a>`);
+                            });
+                        } else {
+                            $("#list-profile").append(`
                                 <div class="row justify-content-center align-items-center">
                                     <img src="../images/mailbox.svg" style="height: 100px" alt="IMG">
                                 </div>
@@ -221,6 +247,7 @@
                                     <p>Nenhum email na sua caixa de entrada ;)</p>
                                 </div>
                     `);
+                        }
                     }
                 }
             });

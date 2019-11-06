@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var user = require('./ws/user')
-router.get("/", function(req, res) {
+const errors = require('./errors.json')
 
-})
+
+function error(code) {
+    return { result: code, error: errors[code] }
+}
 
 router.post("/", async function(req, res) {
     console.log(req.body);
@@ -11,13 +14,16 @@ router.post("/", async function(req, res) {
     res.send(result);
 });
 
-router.put("/:id", async function(req, res) {
-    result = await user.cadastro(req.query.email, req.query.name, req.query.lastName, req.query.password)
-    res.send(result);
+router.get("/:id", async function(req, res) {
+    result = await user.pegar(req.params.id)
+    if (result == 400) {
+
+        json = JSON.stringify(result);
+        console.log(json)
+        res.send(json);
+    } else {
+        res.send(JSON.stringify(error(result)))
+    }
 });
 
-router.get("/:id", async function(req, res) {
-    result = await user.get(req.params.id)
-    res.send(result);
-});
 module.exports = router;

@@ -10,6 +10,7 @@ function error(code) {
 
 
 router.put("/", async function(req, res) {
+    console.log(req)
     resultado = await user.trocarPassword(req.body.email, req.body.newPass);
     res.send(JSON.stringify(error(resultado)))
 })

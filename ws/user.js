@@ -28,8 +28,7 @@ function login(email, password) {
         return new Promise(function(resolve, reject) {
             con.connect(function(error) {
                 con.query(`SELECT * FROM usuarios WHERE email_user = '${email}' AND pass_user = '${password}'`, function(err, result) {
-                    console.log(`SELECT * FROM usuarios WHERE email_user = '${email}' AND pass_user = '${password}'`)
-                    if (result == null) {
+                    if (result[0] == null) {
                         //Erro 402 [Usuario não existente]
                         resolve(402)
                     } else {

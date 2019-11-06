@@ -7,7 +7,8 @@ app.use(express.json());
 var router = require('./router')
 var credentials = require('./credentials.json')
 var user = require('./ws/user')
-    //Criação de rotas
+
+//Criação de rotas do Usuario
 app.use('/user/', router)
 
 app.listen(8080, function() {

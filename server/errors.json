@@ -1,5 +1,6 @@
 {
-    "400": "success",
+    "400": "Sucesso",
     "401": "Campos vazios",
-    "402": "Usuario não existe"
+    "402": "Usuario não existe",
+    "403": "Usuario já existente"
 }

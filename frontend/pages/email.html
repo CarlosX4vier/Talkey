@@ -141,7 +141,6 @@
     <!--===============================================================================================-->
     <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
-    <script src="../vendor/bootstrap/js/popper.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
     <script src="../vendor/select2/select2.min.js"></script>
@@ -176,34 +175,37 @@
     </script>
 
     <script>
-        event.preventDefault();
-        let remetente = $("#name").val();
-        let destinatario = $("#receiver").val();
-        let assunto = $("#subject").val();
-        let mensagem = $("#message").val();
+        function cudefoça() {
+            event.preventDefault();
 
-        let data = {
-            remetente: remetente,
-            destinatario: destinatario,
-            assunto: assunto,
-            mensagem: mensagem
+            let remetente = $("#name").val();
+            let destinatario = $("#receiver").val();
+            let assunto = $("#subject").val();
+            let mensagem = $("#message").val();
+
+            let data = {
+                remetente: remetente,
+                destinatario: destinatario,
+                assunto: assunto,
+                mensagem: mensagem
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "localhost:8080/user/",
+                data: data,
+                datatype: "application/json",
+                contentType: "application/json",
+                success: function(result) {
+                    window.location.href = "email.html";
+                },
+                error: function(result) {
+                    $('#formRegister')[0].reset();
+                    $('#modalError').modal('show');
+                },
+
+            });
         }
-
-        $.ajax({
-            type: "POST",
-            url: "localhost:8080/user/",
-            data: data,
-            datatype: "application/json",
-            contentType: "application/json",
-            success: function(result) {
-                window.location.href = "email.html";
-            },
-            error: function(result) {
-                $('#formRegister')[0].reset();
-                $('#modalError').modal('show');
-            },
-
-        });
     </script>
 
 </body>

@@ -21,7 +21,7 @@ function submitForm(type) {
     if (type == 'userRegister' && check == true) {
         registerUser();
     } else if (type == 'login' && check == true) {
-        return check;
+        validateLogin();
     } else {
         return check;
     }
@@ -96,5 +96,45 @@ function registerUser() {
 }
 
 function validateLogin() {
+
+    event.preventDefault();
+    let email = $('#email').val();
+    let pass = $('#pass').val();
+
+    let data = {
+        email: email,
+        password: pass
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "/user/",
+        data: data,
+        datatype: "application/json",
+        contentType: "application/json",
+        success: function(result) {
+            // console.log(result);
+            result = JSON.parse(result);
+
+            if (result.result == 400) {
+                console.log("no if");
+                window.location.href = "pages/email.html";
+            } else {
+                console.log(result);
+                console.log("no else");
+                // $("#titleModal").html(result.result);
+                // $("#messageModal").html(result.error);
+                $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">ERRO ' + result.result + '</h5>');
+                $(".modal-body").html('<p>' + result.error + '</p>');
+                $('#modalError').modal('show');
+            }
+
+        },
+        error: function(result) {
+            console.log("no error");
+            $('#modalError').modal('show');
+        },
+
+    });
 
 }

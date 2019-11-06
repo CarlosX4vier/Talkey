@@ -66,4 +66,4 @@ function pegar(id) {
 }
 
 
-module.exports = { cadastro, pegar }
+module.exports = { cadastro, pegar, pegarEmail }

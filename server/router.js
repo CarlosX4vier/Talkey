@@ -15,10 +15,9 @@ router.post("/", async function(req, res) {
 });
 
 router.get("/:id", async function(req, res) {
-    result = await user.pegar(req.params.id)
-    if (result == 400) {
-
-        json = JSON.stringify(result);
+    resultado = await user.pegar(req.params.id)
+    if (resultado.result == 400) {
+        json = JSON.stringify(resultado);
         console.log(json)
         res.send(json);
     } else {

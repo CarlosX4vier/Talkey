@@ -193,7 +193,7 @@
             let mensagem = $("#message").val();
 
             let data = {
-                remetente: remetente,
+                remetente: $.cookie('id'),
                 destinatario: destinatario,
                 assunto: assunto,
                 mensagem: mensagem

@@ -2,11 +2,12 @@ const user = require('./user')
 const con = require('./conexao')
 
 
-async function enviar_email(remetente, email_destinatario, assunto, mensagem) {
+async function enviar_email(remetente, destinatario, assunto, mensagem) {
 
-    if (remetente != null && email_destinatario != null && assunto != null && password != null) {
-        id_destinatario = await user.pegarEmail(email_destinatario).data.id_user;
+    if (remetente != null && destinatario != null && assunto != null && mensagem != null) {
 
+        id_destinatario = await user.pegarEmail(destinatario);
+        id_destinatario = id_destinatario.data.id_user;
         return new Promise(function(resolve, reject) {
             con.connect(function(err) {
 

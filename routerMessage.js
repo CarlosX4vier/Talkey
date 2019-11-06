@@ -13,6 +13,7 @@ router.get("/:id", async function(req, res) {
 
 router.post("/", function(req, res) {
     console.log(req);
+    message.enviar_email(req.body.remetente, req.body.destinatario, req.body.assunto, req.body.mensagem)
     res.send(error(400))
 })
 

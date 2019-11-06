@@ -129,6 +129,7 @@ function validateLogin() {
             if (result.result == 400) {
                 console.log("no if");
                 $.cookie('email', result.data.email_user);
+                $.cookie('id', result.data.id_user);
 
                 window.location.href = "pages/email.html";
             } else {

@@ -2,9 +2,10 @@ var express = require('express');
 var app = express();
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json()); //Tá com bug 
 
-var router = require('./router')
+var routerUser = require('./routerUser')
+var routerMessage = require('./routerMessage')
 var credentials = require('./credentials.json')
 var user = require('./ws/user')
 
@@ -16,8 +17,9 @@ app.use(express.static('frontend'));
 // });
 
 //Criação de rotas do Usuario
-app.use('/user/', router)
-
+app.use('/user/', routerUser)
+    //Criação de rotasd da Mensagem
+app.use('/message/', routerMessage)
 app.listen(8080, function() {
     console.log('Servidor online!');
 

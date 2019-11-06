@@ -76,13 +76,14 @@ function registerUser() {
         email: email,
         password: pass
     }
+    console.log(data);
 
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/user/",
         data: data,
-        datatype: "application/json",
-        contentType: "application/json",
+        datatype: "json",
+        //contentType: "application/json",
         success: function(result) {
             window.location.href = "email.html";
         },

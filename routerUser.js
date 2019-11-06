@@ -9,7 +9,7 @@ function error(code) {
 }
 
 router.post("/", async function(req, res) {
-    resultado = await user.cadastro(req.body.email, req.body.name, req.body.lastName, req.body.password)
+    resultado = await user.cadastro(req.body.email, req.body.name, req.body.lastName, req.body.password);
     if (resultado.result != 400) {
         res.send(JSON.stringify(error(resultado)))
     } else {
@@ -19,8 +19,9 @@ router.post("/", async function(req, res) {
 
 router.get("/", async function(req, res) {
     // res.header('Access-Control-Allow-Origin', '*');
-    console.log(req)
+    console.log(req);
     resultado = await user.login(req.query.email, req.query.password);
+
     if (resultado.result == 400) {
         json = JSON.stringify(resultado);
         res.send(json);

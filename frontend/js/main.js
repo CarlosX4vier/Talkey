@@ -69,7 +69,9 @@ function registerUser() {
         lastName: lastname,
         email: email,
         password: pass
-    }
+    };
+
+    console.log("Na função");
 
     $.ajax({
         type: "POST",
@@ -94,6 +96,7 @@ function registerUser() {
                 $(".modal-body").html('<p>' + result.error + '</p>');
                 $('#formRegister')[0].reset();
                 $('#modalError').modal('show');
+                console.log("No ajax erro");
             }
 
         },
@@ -115,7 +118,7 @@ function validateLogin() {
     let data = {
         email: email,
         password: pass
-    }
+    };
 
     $.ajax({
         type: "GET",
@@ -126,9 +129,13 @@ function validateLogin() {
         success: function(result) {
             result = JSON.parse(result);
 
+            console.log(result);
+
             if (result.result == 400) {
-                console.log("no if");
+                console.log(result.result);
                 $.cookie('email', result.data.email_user);
+
+                console.log(result.data.email_user);
 
                 window.location.href = "pages/email.html";
             } else {

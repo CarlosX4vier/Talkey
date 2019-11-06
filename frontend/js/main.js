@@ -1,7 +1,3 @@
-// (function($) {
-//     "use strict";
-
-
 /*==================================================================
 [ Validate ]*/
 var input = $('.validate-input .input100');
@@ -59,8 +55,6 @@ function hideValidate(input) {
     $(thisAlert).removeClass('alert-validate');
 }
 
-// })(jQuery);
-
 function registerUser() {
 
     event.preventDefault();
@@ -80,12 +74,25 @@ function registerUser() {
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/user/",
+        url: "/user/",
         data: data,
         datatype: "json",
         //contentType: "application/json",
         success: function(result) {
-            window.location.href = "email.html";
+            result = JSON.parse(result);
+
+            if (result.result == 400) {
+                console.log("no if");
+                window.location.href = "email.html";
+            } else {
+                console.log(result);
+                console.log("no else");
+                $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">ERRO ' + result.result + '</h5>');
+                $(".modal-body").html('<p>' + result.error + '</p>');
+                $('#formRegister')[0].reset();
+                $('#modalError').modal('show');
+            }
+
         },
         error: function(result) {
             $('#formRegister')[0].reset();
@@ -114,7 +121,6 @@ function validateLogin() {
         datatype: "application/json",
         contentType: "application/json",
         success: function(result) {
-            // console.log(result);
             result = JSON.parse(result);
 
             if (result.result == 400) {
@@ -123,8 +129,6 @@ function validateLogin() {
             } else {
                 console.log(result);
                 console.log("no else");
-                // $("#titleModal").html(result.result);
-                // $("#messageModal").html(result.error);
                 $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">ERRO ' + result.result + '</h5>');
                 $(".modal-body").html('<p>' + result.error + '</p>');
                 $('#modalError').modal('show');
@@ -133,6 +137,8 @@ function validateLogin() {
         },
         error: function(result) {
             console.log("no error");
+            $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">ERRO DESCONHECIDO</h5>');
+            $(".modal-body").html('<p>Se o problema persistir, contate o suporte!</p>');
             $('#modalError').modal('show');
         },
 

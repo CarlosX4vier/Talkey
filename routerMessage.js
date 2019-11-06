@@ -7,8 +7,8 @@ function error(code) {
     return { result: code, error: errors[code] }
 }
 
-router.get("/", async function(req, res) {
-    res.send(await message.getEmail(2))
+router.get("/:id", async function(req, res) {
+    res.send(await message.getEmail(res.params.id))
 })
 
 router.post("/", function(req, res) {

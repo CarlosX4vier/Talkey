@@ -3,6 +3,11 @@ var router = express.Router();
 var user = require('./ws/user')
 const errors = require('./errors.json')
 
+
+function error(code) {
+    return { result: code, error: errors[code] }
+}
+
 router.post("/", async function(req, res) {
     resultado = await user.cadastro(req.body.email, req.body.name, req.body.lastName, req.body.password)
     if (resultado.result != 400) {
@@ -14,7 +19,7 @@ router.post("/", async function(req, res) {
 
 router.get("/", async function(req, res) {
     // res.header('Access-Control-Allow-Origin', '*');
-
+    console.log(req)
     resultado = await user.login(req.query.email, req.query.password);
     if (resultado.result == 400) {
         json = JSON.stringify(resultado);

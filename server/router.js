@@ -5,10 +5,10 @@ router.get("/", function(req, res) {
 
 })
 
-router.post("/", express.urlencoded({ type: "application/json" }), async function(req, res) {
-    console.log(req);
-    // result = await user.cadastro(req.query.email, req.query.name, req.query.lastName, req.query.password)
-    //res.send(result);
+router.post("/", async function(req, res) {
+    console.log(req.body);
+    result = await user.cadastro(req.query.email, req.query.name, req.query.lastName, req.query.password)
+    res.send(result);
 });
 
 router.put("/:id", async function(req, res) {

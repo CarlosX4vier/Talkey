@@ -13,7 +13,6 @@ function submitForm(type) {
         }
     }
 
-    console.log(type);
     if (type == 'userRegister' && check == true) {
         registerUser();
     } else if (type == 'login' && check == true) {
@@ -63,7 +62,6 @@ function registerUser() {
     let email = $("#email").val();
     let pass = $("#pass").val();
 
-    //http://localhost:8080/user?name=victor&lastName=n%20sei&password=naosei3432&email=22342343242%40gmail.com
     let data = {
         name: name,
         lastName: lastname,
@@ -77,15 +75,13 @@ function registerUser() {
         type: "POST",
         url: "/user/",
         data: data,
-        datatype: "json",
-        contentType: "application/json",
+        datatype: "application/json",
+        // contentType: "application/json",
         success: function(result) {
-            console.log('AJAX?');
             result = JSON.parse(result);
 
             if (result.result == 400) {
-                console.log("no if");
-                $.cookie('email', result.data.email_user);
+                // $.cookie('email', '');
 
                 window.location.href = "email.html";
 
@@ -135,8 +131,6 @@ function validateLogin() {
                 console.log(result.result);
                 $.cookie('email', result.data.email_user);
                 $.cookie('id', result.data.id_user);
-
-                console.log(result.data.email_user);
 
                 window.location.href = "pages/email.html";
             } else {

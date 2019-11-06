@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var user = require('./ws/user')
-const errors = require('./errors.json')
+var user = require('./ws/user');
+const errors = require('./errors.json');
 
 
 function error(code) {
@@ -19,7 +19,6 @@ router.post("/", async function(req, res) {
 
 router.get("/", async function(req, res) {
     // res.header('Access-Control-Allow-Origin', '*');
-    console.log(req);
     resultado = await user.login(req.query.email, req.query.password);
 
     if (resultado.result == 400) {

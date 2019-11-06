@@ -6,7 +6,7 @@ function cadastro(email, name, lastName, password) {
         return new Promise(function(resolve, reject) {
             con.connect(async function(err) {
 
-                //Verifica se o codigo retornado é 403 [Usuario não cadastrado]
+                //Verifica se o codigo retornado é 402 [Usuario não cadastrado]
                 if (await pegarEmail(email) == 402) {
                     con.query(`INSERT INTO usuarios(nome_user, sobrenome_user, email_user, pass_user) VALUES ('${name}', '${lastName}', '${email}', '${password}')`, function() {
                         //Caso o cadastro tenha sido completado retorna 400 [sucesso]

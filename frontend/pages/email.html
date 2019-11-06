@@ -153,6 +153,8 @@
         </div>
     </div>
 
+    <div class="alert alert-success" role="alert" id="alertSuccess"></div>
+
 
     <!--===============================================================================================-->
     <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -268,10 +270,13 @@
                 datatype: "json",
                 // contentType: "application/json",
                 success: function (result) {
-                    $('#sendEmail')[0].reset();
-                    $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">Email</h5>');
-                    $(".modal-body").html('<p>Email enviado com sucesso!</p>');
-                    $('#modalError').modal('show');
+                    // $('#sendEmail')[0].reset();
+                    // $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">Email</h5>');
+                    // $(".modal-body").html('<p>Email enviado com sucesso!</p>');
+                    // $('#modalError').modal('show');
+                    $("#alertSuccess").append('<h4 class="alert-heading">Muito bem!</h4><p>Email enviado com sucesso!</p>');
+                    $('#formReset')[0].reset();
+                    $('#alertSuccess').alert()
                 },
                 error: function (result) {
                     $('#sendEmail')[0].reset();

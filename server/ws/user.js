@@ -16,7 +16,7 @@ function cadastro(email, name, lastName, password) {
             con.connect(function(err) {
                 if (err) throw err;
                 console.log("Connected!");
-                con.query(`INSERT INTO usuarios VALUES (NULL, '${name}', '${lastName}', '${email}', '${password}')`, function(error){
+                con.query(`INSERT INTO usuarios(nome_user, sobrenome_user, email_user, pass_user) VALUES ('${name}', '${lastName}', '${email}', '${password}')`, function(error) {
                     if (error) throw err;
                     resolve(JSON.stringify({ result: "success" }))
                 });

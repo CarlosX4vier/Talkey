@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <div class="alert alert-success" role="alert" id="alertSuccess"></div>
+    <div class="alert alert-success" type="hidden" role="alert" id="alertSuccess"></div>
 
     <div class="alert alert-danger" role="alert" id="alertDanger"></div>
 
@@ -124,24 +124,24 @@
                 url: "/user/",
                 data: data,
                 datatype: "application/json",
-                success: function (result) {
+                success: function(result) {
                     console.log(result);
                     result = JSON.parse(result);
 
                     if (result.result == 400) {
                         $("#alertSuccess").append('<h4 class="alert-heading">Muito bem!</h4><p>Senha alterada com sucesso!</p>');
                         $('#formReset')[0].reset();
-                        $('#alertSuccess').alert()
-                        
+                        $('#alertSuccess').alert();
+
 
                     } else {
-                        $("#alertDanger").append('<h4 class="alert-heading">'+ result.result +'</h4><p>'+ result.error +'</p>');
+                        $("#alertDanger").append('<h4 class="alert-heading">' + result.result + '</h4><p>' + result.error + '</p>');
                         $('#formReset')[0].reset();
-                        $('#alertDanger').alert()
+                        $('#alertDanger').alert();
                     }
 
                 },
-                error: function (result) {
+                error: function(result) {
                     $('#formReset')[0].reset();
                     $('#modalError').modal('show');
                 },

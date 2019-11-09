@@ -7,6 +7,7 @@ function error(code) {
     return { result: code, error: errors[code] }
 }
 
+//Pega todos os emails de um usuario 
 router.get("/:id", async function(req, res) {
     resultado = await message.getEmail(req.params.id, req.query.pasta);
 
@@ -18,6 +19,7 @@ router.get("/:id", async function(req, res) {
 
 });
 
+//Pega todos os emails enviados por um usuario
 router.get("/:id/enviados", async function(req, res) {
     resultado = await message.getEnviados(req.params.id, req.query.pasta);
 
@@ -29,10 +31,9 @@ router.get("/:id/enviados", async function(req, res) {
 
 });
 
-
+//Envia email de um usuario para outro
 router.post("/", function(req, res) {
     resultado = message.enviar_email(req.body.remetente, req.body.destinatario, req.body.assunto, req.body.mensagem);
-    // res.send(error(400))
 
     if (resultado.result != 400) {
         res.send(JSON.stringify(error(resultado)))
@@ -41,6 +42,7 @@ router.post("/", function(req, res) {
     }
 })
 
+//Deleta email
 router.delete("/:id", async function(req, res) {
     res.send(await message.deleteEmail(req.params.id));
 })

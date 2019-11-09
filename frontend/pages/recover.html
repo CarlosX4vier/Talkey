@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" onclick="resetPassword()">
+                        <button class="login100-form-btn" onclick="submitForm('resetPassword')">
                             Recuperar
                         </button>
                     </div>
@@ -68,10 +68,6 @@
             </div>
         </div>
     </div>
-
-    <div class="alert alert-success" type="hidden" role="alert" id="alertSuccess"></div>
-
-    <div class="alert alert-danger" role="alert" id="alertDanger"></div>
 
     <div class="modal" tabindex="-1" role="dialog" id="modalError">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -107,47 +103,6 @@
     </script>
     <!--===============================================================================================-->
     <script src="../js/main.js"></script>
-
-    <script>
-        function resetPassword() {
-            event.preventDefault();
-            let email = $("#email").val();
-            let newPass = $("#pass").val();
-
-            let data = {
-                email: email,
-                newPass: newPass
-            }
-
-            $.ajax({
-                type: "PUT",
-                url: "/user/",
-                data: data,
-                datatype: "application/json",
-                success: function(result) {
-                    console.log(result);
-                    result = JSON.parse(result);
-
-                    if (result.result == 400) {
-                        $("#alertSuccess").append('<h4 class="alert-heading">Muito bem!</h4><p>Senha alterada com sucesso!</p>');
-                        $('#formReset')[0].reset();
-                        $('#alertSuccess').alert();
-
-
-                    } else {
-                        $("#alertDanger").append('<h4 class="alert-heading">' + result.result + '</h4><p>' + result.error + '</p>');
-                        $('#formReset')[0].reset();
-                        $('#alertDanger').alert();
-                    }
-
-                },
-                error: function(result) {
-                    $('#formReset')[0].reset();
-                    $('#modalError').modal('show');
-                },
-            });
-        }
-    </script>
 
 </body>
 

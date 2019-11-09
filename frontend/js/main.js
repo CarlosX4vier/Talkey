@@ -17,6 +17,8 @@ function submitForm(type) {
         registerUser();
     } else if (type == 'login' && check == true) {
         validateLogin();
+    } else if (type == 'resetPassword' && check == true) {
+        resetPassword();
     } else {
         return check;
     }
@@ -24,8 +26,8 @@ function submitForm(type) {
 };
 
 
-$('.validate-form .input100').each(function () {
-    $(this).focus(function () {
+$('.validate-form .input100').each(function() {
+    $(this).focus(function() {
         hideValidate(this);
     });
 });
@@ -77,7 +79,7 @@ function registerUser() {
         data: data,
         datatype: "application/json",
         // contentType: "application/json",
-        success: function (result) {
+        success: function(result) {
             result = JSON.parse(result);
 
             if (result.result == 400) {
@@ -96,7 +98,7 @@ function registerUser() {
             }
 
         },
-        error: function (result) {
+        error: function(result) {
             $('#formRegister')[0].reset();
             $('#modalError').modal('show');
         },
@@ -121,7 +123,7 @@ function validateLogin() {
         url: "/user/",
         data: data,
         datatype: "application/json",
-        success: function (result) {
+        success: function(result) {
             result = JSON.parse(result);
 
 
@@ -138,7 +140,7 @@ function validateLogin() {
             }
 
         },
-        error: function (result) {
+        error: function(result) {
             console.log("no error");
             $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">ERRO DESCONHECIDO</h5>');
             $(".modal-body").html('<p>Se o problema persistir, contate o suporte!</p>');
@@ -147,4 +149,44 @@ function validateLogin() {
 
     });
 
+}
+
+function resetPassword() {
+    event.preventDefault();
+    let email = $("#email").val();
+    let newPass = $("#pass").val();
+
+    let data = {
+        email: email,
+        newPass: newPass
+    }
+
+    $.ajax({
+        type: "PUT",
+        url: "/user/",
+        data: data,
+        datatype: "application/json",
+        success: function(result) {
+            console.log(result);
+            result = JSON.parse(result);
+
+            if (result.result == 400) {
+                $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">Muito bem!</h5>');
+                $(".modal-body").html('<p>Senha alterada com sucesso</p>');
+                $('#formReset')[0].reset();
+                $('#modalError').modal('show');
+
+            } else {
+                $(".modal-header").prepend('<h5 class="modal-title" id="titleModal">ERRO ' + result.result + '</h5>');
+                $(".modal-body").html('<p>' + result.error + '</p>');
+                $('#formReset')[0].reset();
+                $('#modalError').modal('show');
+            }
+
+        },
+        error: function(result) {
+            $('#formReset')[0].reset();
+            $('#modalError').modal('show');
+        },
+    });
 }

@@ -7,23 +7,25 @@ async function enviar_email(remetente, destinatario, assunto, mensagem) {
     if (remetente != null && destinatario != null && assunto != null && mensagem != null) {
 
         id_destinatario = await user.pegarEmail(destinatario);
+        console.log(id_destinatario)
         id_destinatario = id_destinatario.data.id_user;
+        console.log(id_destinatario)
 
         if (id_destinatario != null) {
-
             return new Promise(function(resolve, reject) {
                 con.connect(function(err) {
-
-                    con.query(`INSERT INTO email(id_remetente, id_destinatario, assunto_email, message) VALUES ('${id_destinatario}', '${id_destinatario}', '${assunto}', '${mensagem}')`, function() {
+                    con.query(`INSERT INTO email(id_remetente, id_destinatario, assunto_email, mensagem_email) VALUES ('${remetente}', '${id_destinatario}', '${assunto}', '${mensagem}')`, function() {
                         resolve(400)
                     });
                 });
             });
 
         } else {
+            //Error 402 = Usuario nao existe
             return 402;
         }
     } else {
+        //Error 401 = Campos vazios
         return 401;
     }
 }
@@ -38,6 +40,8 @@ function getEmail(id, pasta = 0) {
             })
         })
     } else {
+        //Error 401 = Campos vazios
+
         return 401;
     }
 }
